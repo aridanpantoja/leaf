@@ -2,6 +2,11 @@ import sharp from 'sharp'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { buildConfig } from 'payload'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -12,5 +17,8 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
   sharp,
 })
