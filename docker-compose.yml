@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=polls
     volumes:
       - polls_pg_data:/bitnami/postgresql
+    logging:
+      driver: none
 
 volumes:
   polls_pg_data:
