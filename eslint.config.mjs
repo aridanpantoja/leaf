@@ -25,6 +25,7 @@ const eslintConfig = [
       'jsx-a11y/role-has-required-aria-props': 'warn',
       'jsx-a11y/role-supports-aria-props': 'warn',
     },
+    ignorePatterns: ['src/app/(payload)/**', 'src/payload-types.ts'],
   }),
 ]
 
