@@ -6,6 +6,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
+import { Categories } from '@/collections/Categories'
+import { Posts } from '@/collections/Posts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -40,7 +42,7 @@ export default buildConfig({
     },
   },
   editor: lexicalEditor(),
-  collections: [Media, Users],
+  collections: [Media, Users, Categories, Posts],
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({
     pool: {
