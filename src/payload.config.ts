@@ -1,13 +1,14 @@
-import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { buildConfig } from 'payload'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { Users } from '@/collections/Users'
-import { Media } from '@/collections/Media'
 import { Categories } from '@/collections/Categories'
+import { Media } from '@/collections/Media'
 import { Posts } from '@/collections/Posts'
+import { Users } from '@/collections/Users'
+import { plugins } from '@/plugins'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import path from 'path'
+import { buildConfig } from 'payload'
+import sharp from 'sharp'
+import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,6 +44,7 @@ export default buildConfig({
   },
   editor: lexicalEditor(),
   collections: [Media, Users, Categories, Posts],
+  plugins: [...plugins],
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({
     pool: {
