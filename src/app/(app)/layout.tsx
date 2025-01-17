@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   category: 'website',
   metadataBase: new URL(siteConfig.url),
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
