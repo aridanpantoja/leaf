@@ -1,11 +1,11 @@
+import { Footer } from '@/components/footer'
+import { Navbar } from '@/components/navbar'
+import { siteConfig } from '@/config'
+import { cn } from '@/lib/utils'
+import { Providers } from '@/providers'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { cn } from '@/lib/utils'
-import { Navbar } from '@/components/navbar'
-import { siteConfig } from '@/config'
-import { Footer } from '@/components/footer'
-import { ThemeProvider } from '@/components/theme/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +15,32 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  authors: [{ name: 'Name Lastname', url: 'https://yourportfolio.dev' }],
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    images: [
+      {
+        url: siteConfig.ogImage,
+      },
+    ],
+  },
+  icons: '/favicon.ico',
+  generator: 'Next.js',
+  category: 'website',
+  metadataBase: new URL(siteConfig.url),
+  manifest: '/manifest.json',
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: siteConfig.ogImage,
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -30,15 +56,11 @@ export default function RootLayout({
           inter.className,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
+        <Providers>
           <Navbar />
           <main className="my-16 flex grow flex-col">{children}</main>
           <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )
